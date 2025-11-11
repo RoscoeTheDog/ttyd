@@ -52,3 +52,5 @@ build
 
 # Project files
 !init.d
+.serena/
+.claude-context/
