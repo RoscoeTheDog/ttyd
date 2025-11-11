@@ -54,3 +54,14 @@ build
 !init.d
 .serena/
 .claude-context/
+
+# Development setup
+# Keep setup scripts tracked, but ignore downloaded binaries
+!.setup/
+!.setup/*.sh
+!.setup/*.ps1
+!.setup/README.md
+
+# Ignore downloaded binaries in repo root
+ttyd.exe
+ttyd_*.exe
