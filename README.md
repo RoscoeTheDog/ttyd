@@ -56,6 +56,10 @@ ttyd is a simple command-line tool for sharing terminal over the web.
 - Install with [Scoop](https://scoop.sh/#/apps?q=ttyd&s=2&d=1&o=true): `scoop install ttyd`
 - [Compile on Windows](https://github.com/tsl0922/ttyd/wiki/Compile-on-Windows)
 
+**📚 Windows Setup Guide**: See [docs/setup/windows-environment.md](docs/setup/windows-environment.md) for a complete Windows environment setup guide including Git Bash, MSYS2, tmux, and utility scripts for managing ttyd with session persistence.
+
+**🎨 Theme & Font Configuration**: See [.claude/context/ttyd-theme-configuration.md](.claude/context/ttyd-theme-configuration.md) for configuring ttyd with custom fonts, themes, and PowerShell Campbell Dark color scheme. Includes solutions for PowerShell JSON escaping issues.
+
 # Usage
 
 ## Command-line Options
@@ -102,7 +106,56 @@ Read the example usage on the [wiki](https://github.com/tsl0922/ttyd/wiki/Exampl
 
 Modern browsers, See [Browser Support](https://github.com/xtermjs/xterm.js#browser-support).
 
+## Utility Scripts
+
+This repository includes utility scripts for managing ttyd servers with tmux session persistence:
+
+```bash
+# Start server with writable mode
+./scripts/ttyd-start.sh -w
+
+# Check server status
+./scripts/ttyd-status.sh
+
+# View logs in real-time
+./scripts/ttyd-logs.sh -f
+
+# Restart server
+./scripts/ttyd-restart.sh -w
+
+# Stop server
+./scripts/ttyd-stop.sh
+```
+
+**Features:**
+- Automatic tmux session creation for persistence
+- Cross-platform support (Windows/Linux/macOS)
+- Environment variable configuration
+- Log management and rotation
+- Multiple instance support
+
+**Documentation:**
+- [Complete Documentation](docs/index.md) - Main documentation index
+- [Script Usage Guide](docs/guides/script-usage.md) - Detailed script reference
+- [Windows Setup Guide](docs/setup/windows-environment.md) - Windows environment setup
+- [Troubleshooting](docs/troubleshooting/common-issues.md) - Common issues and solutions
+
 ## Alternatives
 
 * [Wetty](https://github.com/krishnasrinivas/wetty): [Node](https://nodejs.org) based web terminal (SSH/login)
 * [GoTTY](https://github.com/yudai/gotty): [Go](https://golang.org) based web terminal
+
+---
+
+## Windows Development Fork - Quick Start
+
+This fork includes a simplified Windows setup for development/debugging use.
+
+**Start ttyd:**
+```powershell
+.\ttyd-start.ps1
+```
+
+**Access:** http://localhost:7681
+
+**Important Note:** ttyd 1.7.7 on Windows requires the `-w` (working directory) flag to avoid CreateProcessW error 123. The provided script includes this fix. See [.claude/context/windows-error123-fix.md](.claude/context/windows-error123-fix.md) for technical details.
